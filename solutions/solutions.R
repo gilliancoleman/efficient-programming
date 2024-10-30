@@ -20,7 +20,7 @@ prot_pairwise_dens <- prot_significance_dens %>%
   mutate(pairwise  = map(.x= data,
                          ~pairwise.wilcox.test(x = .x$density,
                                                g = .x$PROT,
-                                               p.adjust.method = "BH") %>% 
+                                               p.adjust.method = "bonferroni") %>% 
                            tidy())) %>% 
   unnest(pairwise) %>% 
   filter(p.value < 0.05)
