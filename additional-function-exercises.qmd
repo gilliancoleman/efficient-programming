@@ -1,0 +1,226 @@
+---
+title: "Additional Function Exercises"
+format: html
+---
+
+### Exercise 1
+
+Create a function `welcome_user()` that prints a welcome message.
+
+::: {.callout-note appearance="simple"}
+**Expected Output:** The text printed to the console.
+
+`Welcome to MMES-565!`
+:::
+
+### Exercise 2
+
+Write a function `greet_user()` that takes a user's name and prints a personalized message.
+
+Hint: look at the tidyverse [glue](https://glue.tidyverse.org/) function for using 'string literals'
+
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+If input is `greet_user("Jeremiah")`, the output should be
+
+`Hello Jeremiah, welcome to MMES-565!`
+:::
+
+### Exercise 3
+
+Write a function `double_number()` that takes a numeric input and returns double its value.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+`double_number(10)`
+
+20
+:::
+
+### Exercise 4
+
+Write a function `add_and_multiply()` that takes two numbers (a, b), adds them, and multiplies the result by 10.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+`add_and_multiply(3, 7)`
+
+`100`
+:::
+
+### Exercise 5
+
+Write a function `make_summary_tibble()` that takes three numeric inputs and returns a dataframe showing their mean and sum.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+For inputs `(2, 4, 6)`
+
+| mean_value | sum_value |
+|------------|-----------|
+| 4          | 12        |
+:::
+
+### Exercise 6
+
+Write a function `convert_to_celsius()` that converts Fahrenheit to Celsius. Default argument: `fahrenheit = 98.6`.
+
+::: {.callout-note appearance="simple"}
+\
+**Expected Output Examples:**\
+`convert_to_celsius()37`
+
+\
+`convert_to_celsius(77)`\
+25
+:::
+
+### Exercise 7
+
+Write a function `square_and_double()` that uses one of your previous functions to square a number and then double it.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+`square_and_double(3)`\
+`18`
+:::
+
+------------------------------------------------------------------------
+
+These exercises will use the provided 'drto_psu_density.csv' found in the /data directory
+
+### Exercise 8
+
+Write a function `protection_label()` that converts numeric `PROT` codes and adds a new column to the dataset called `PROT_LABEL`.\
+\
+`0` → `Open`\
+`1` → `Northeast Reserve`\
+`2` → `National Park`
+
+\
+**Expected Output:** A tibble with an added `PROT_LABEL` column showing text labels for protection zones.
+
+**Expected Output Example:**
+
+::: callout-note
+| YEAR | REGION | STRAT | PROT | PRIMARY_SAMPLE_UNIT | SPECIES_CD | m | var | denisty | PROT_LABEL |
+|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:-------|
+| 2023 | DRY TORT | T01 | 2 | 2022_2190_2023 | ABU SAXA | 1 | NA | 5 | National Park |
+:::
+
+### Exercise 9
+
+Write a function `filter_by_species()` that filters the dataset for a given species code.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+Calling `filter_by_species(data, "EPI GUTT")` should return rows containing only that species.
+:::
+
+### Exercise 10
+
+Write a function `mean_density_by_prot()` that calculates the mean density by protection zone.
+
+\
+**Expected Output Example:**
+
+Should return a dataframe showing `PROT_LABEL` and corresponding `mean_density` values.
+
+### Exercise 11
+
+Write a function `mean_density_by()` that takes a dataframe and a column name and calculates mean density grouped by that column.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+Grouping by `STRAT` should return a dataframe of strata and mean density per stratum.\
+or\
+Grouping by PROT should return a dataframe of PROT and mean density per PROT.
+:::
+
+### Exercise 12
+
+Write a function `density_summary()` that returns mean, median, and standard deviation of `density`.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+A single-row tibble with columns `mean_density`, `median_density`, `sd_density`.
+:::
+
+### Exercise 13
+
+Write a function `species_density_summary()` that:
+
+1\. Calls `filter_by_species()`.
+
+2\. Uses `mean_density_by_prot()`.
+
+3\. Returns a dataframe summarizing mean density by protection zone.
+
+\
+**Expected Output Example:**
+
+::: {.callout-note appearance="simple"}
+A datafame showing protection zones and their mean densities for the selected species.
+:::
+
+### Exercise 14
+
+Write a function `compare_species_density()` that:
+
+1\. Filters data by species.
+
+2\. Calculates mean density by protection zone.
+
+3\. Plots results using `ggplot2`.
+
+\
+**Expected Output:**
+
+::: {.callout-note appearance="simple"}
+A bar plot showing mean density by protection zone for the selected species.
+:::
+
+------------------------------------------------------------------------
+
+# Bonus: Using Default Arguments
+
+### Exercise 15
+
+Write a function `species_density_by_prot()` that:
+
+1\. Takes a dataset, `species_code`, and optional `PROT = NULL`.
+
+2\. If `PROT` is `NULL`, includes all protection zones.
+
+3\. If `PROT` is provided, filters for those zones.
+
+4\. Returns mean density per protection zone.
+
+\
+**Expected Output Examples:**
+
+::: {.callout-note appearance="simple"}
+\
+`species_density_by_prot(data, "EPI GUTT")`Dataframe of all protection zones and mean densities.
+
+\
+`species_density_by_prot(data, "EPI GUTT", PROT = c(0, 2))`\
+Dataframe filtered to zones 0 and 2 only.
+:::
+
+------------------------------------------------------------------------
